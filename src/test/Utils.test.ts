@@ -1,7 +1,7 @@
 import { getStringInfo, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
-    
+
     it('should return upper case of valid string', () => {
         // arrage:
         const sut = toUpperCase;
@@ -15,16 +15,95 @@ describe("Utils test suite", () => {
         expect(actual).toBe(expected);
     })
 
+    describe('getStringInfo for arg My-String should', () => {
+        test('return right length', () => {
+            // arrage:
+            const sut = getStringInfo;
+            const input = 'My-String';
+
+            // act:
+            const actual = sut(input);
+
+            // assert:
+            expect(actual.length).toBe(9);
+        })
 
 
-    it.only('should return info for valid string', () => {
+        test('return right lower case', () => {
+            // arrage:
+            const sut = getStringInfo;
+            const input = 'My-String';
+
+            // act:
+            const actual = sut(input);
+
+            // assert:
+            expect(actual.lowerCase).toBe('my-string');
+        })
+
+        test('return right upper case', () => {
+            // arrage:
+            const sut = getStringInfo;
+            const input = 'My-String';
+
+            // act:
+            const actual = sut(input);
+
+            // assert:
+            expect(actual.upperCase).toBe('MY-STRING');
+        })
+
+        test('return right characters', () => {
+            // arrage:
+            const sut = getStringInfo;
+            const input = 'My-String';
+
+            // act:
+            const actual = sut(input);
+
+            // assert:
+            expect(actual.characters).toContain('M');
+            expect(actual.characters).toContain('y');
+            expect(actual.characters).toEqual(Array.from(input));
+            expect(actual.characters).toEqual(
+                expect.arrayContaining(Array.from(input))
+            );
+        })
+
+        test('return defined extra info', () => {
+            // arrage:
+            const sut = getStringInfo;
+            const input = 'My-String';
+
+            // act:
+            const actual = sut(input);
+
+            // assert:
+            expect(actual.extraInfo).toBeDefined();
+        })
+
+        test('return right extra info', () => {
+            // arrage:
+            const sut = getStringInfo;
+            const input = 'My-String';
+
+            // act:
+            const actual = sut(input);
+
+            // assert:
+            expect(actual.extraInfo).toEqual({});
+        })
+    })
+
+
+    it('should return info for valid string', () => {
         // arrage:
         const sut = getStringInfo;
         const input = 'My-String';
 
         // act:
         const actual = sut('My-String');
-        
+
         // assert:
         expect(actual.lowerCase).toBe(input.toLowerCase());
         expect(actual.upperCase).toBe(input.toUpperCase());
