@@ -1,124 +1,147 @@
 import { getStringInfo, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
-
-    it('should return upper case of valid string', () => {
-        // arrage:
-        const sut = toUpperCase;
-        const expected = 'ABC';
-
+  //each test paramters
+  describe("ToUpperCase examples", () => {
+    // arrage:
+    it.each([
+      {
+        input: "abc",
+        expected: "ABC",
+      },
+      {
+        input: "My-String",
+        expected: "MY-STRING",
+      },
+      {
+        input: "def",
+        expected: "DEF",
+      },
+    ])(
+      "$input toUpperCase should return $expected",
+      ({ input, expected }) => {
         // act:
-        const actual = sut('abc');
-
+        const actual = toUpperCase(input);
 
         // assert:
         expect(actual).toBe(expected);
-    })
+      }
+    );
+  });
 
-    describe('getStringInfo for arg My-String should', () => {
-        test('return right length', () => {
-            // arrage:
-            const sut = getStringInfo;
-            const input = 'My-String';
+  it("should return upper case of valid string", () => {
+    // arrage:
+    const sut = toUpperCase;
+    const expected = "ABC";
 
-            // act:
-            const actual = sut(input);
+    // act:
+    const actual = sut("abc");
 
-            // assert:
-            expect(actual.length).toBe(9);
-        })
+    // assert:
+    expect(actual).toBe(expected);
+  });
 
+  describe("getStringInfo for arg My-String should", () => {
+    test("return right length", () => {
+      // arrage:
+      const sut = getStringInfo;
+      const input = "My-String";
 
-        test('return right lower case', () => {
-            // arrage:
-            const sut = getStringInfo;
-            const input = 'My-String';
+      // act:
+      const actual = sut(input);
 
-            // act:
-            const actual = sut(input);
+      // assert:
+      expect(actual.length).toBe(9);
+    });
 
-            // assert:
-            expect(actual.lowerCase).toBe('my-string');
-        })
+    test("return right lower case", () => {
+      // arrage:
+      const sut = getStringInfo;
+      const input = "My-String";
 
-        test('return right upper case', () => {
-            // arrage:
-            const sut = getStringInfo;
-            const input = 'My-String';
+      // act:
+      const actual = sut(input);
 
-            // act:
-            const actual = sut(input);
+      // assert:
+      expect(actual.lowerCase).toBe("my-string");
+    });
 
-            // assert:
-            expect(actual.upperCase).toBe('MY-STRING');
-        })
+    test("return right upper case", () => {
+      // arrage:
+      const sut = getStringInfo;
+      const input = "My-String";
 
-        test('return right characters', () => {
-            // arrage:
-            const sut = getStringInfo;
-            const input = 'My-String';
+      // act:
+      const actual = sut(input);
 
-            // act:
-            const actual = sut(input);
+      // assert:
+      expect(actual.upperCase).toBe("MY-STRING");
+    });
 
-            // assert:
-            expect(actual.characters).toContain('M');
-            expect(actual.characters).toContain('y');
-            expect(actual.characters).toEqual(Array.from(input));
-            expect(actual.characters).toEqual(
-                expect.arrayContaining(Array.from(input))
-            );
-        })
+    test("return right characters", () => {
+      // arrage:
+      const sut = getStringInfo;
+      const input = "My-String";
 
-        test('return defined extra info', () => {
-            // arrage:
-            const sut = getStringInfo;
-            const input = 'My-String';
+      // act:
+      const actual = sut(input);
 
-            // act:
-            const actual = sut(input);
+      // assert:
+      expect(actual.characters).toContain("M");
+      expect(actual.characters).toContain("y");
+      expect(actual.characters).toEqual(Array.from(input));
+      expect(actual.characters).toEqual(
+        expect.arrayContaining(Array.from(input))
+      );
+    });
 
-            // assert:
-            expect(actual.extraInfo).toBeDefined();
-        })
+    test("return defined extra info", () => {
+      // arrage:
+      const sut = getStringInfo;
+      const input = "My-String";
 
-        test('return right extra info', () => {
-            // arrage:
-            const sut = getStringInfo;
-            const input = 'My-String';
+      // act:
+      const actual = sut(input);
 
-            // act:
-            const actual = sut(input);
+      // assert:
+      expect(actual.extraInfo).toBeDefined();
+    });
 
-            // assert:
-            expect(actual.extraInfo).toEqual({});
-        })
-    })
+    test("return right extra info", () => {
+      // arrage:
+      const sut = getStringInfo;
+      const input = "My-String";
 
+      // act:
+      const actual = sut(input);
 
-    it('should return info for valid string', () => {
-        // arrage:
-        const sut = getStringInfo;
-        const input = 'My-String';
+      // assert:
+      expect(actual.extraInfo).toEqual({});
+    });
+  });
 
-        // act:
-        const actual = sut('My-String');
+  it("should return info for valid string", () => {
+    // arrage:
+    const sut = getStringInfo;
+    const input = "My-String";
 
-        // assert:
-        expect(actual.lowerCase).toBe(input.toLowerCase());
-        expect(actual.upperCase).toBe(input.toUpperCase());
-        expect(actual.length).toBe(input.length);
-        expect(actual.characters).toContain('M');
-        expect(actual.characters).toContain('y');
-        expect(actual.characters).toEqual(Array.from(input));
-        expect(actual.characters).toEqual(
-            expect.arrayContaining(Array.from(input))
-        );
+    // act:
+    const actual = sut("My-String");
 
-        expect(actual.extraInfo).toEqual({});
+    // assert:
+    expect(actual.lowerCase).toBe(input.toLowerCase());
+    expect(actual.upperCase).toBe(input.toUpperCase());
+    expect(actual.length).toBe(input.length);
+    expect(actual.characters).toContain("M");
+    expect(actual.characters).toContain("y");
+    expect(actual.characters).toEqual(Array.from(input));
+    expect(actual.characters).toEqual(
+      expect.arrayContaining(Array.from(input))
+    );
 
-        expect(actual.extraInfo).not.toBe(undefined);
-        expect(actual.extraInfo).not.toBeUndefined();
+    expect(actual.extraInfo).toEqual({});
 
-    })
-})
+    expect(actual.extraInfo).not.toBe(undefined);
+    expect(actual.extraInfo).not.toBeUndefined();
+  });
+});
