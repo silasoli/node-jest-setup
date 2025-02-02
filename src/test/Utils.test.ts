@@ -25,6 +25,39 @@ describe("Utils test suite", () => {
       console.log('Actual test')
 
     })
+
+    it('should throw error on invalid argument - function', () => {
+      // act:
+      function expectError() {
+        const actual = sut.toUpperCase('');
+      }
+
+      // assert:
+      expect(expectError).toThrow();
+      expect(expectError).toThrow('Invalid argument!');
+    })
+
+
+    it('should throw error on invalid argument - arrow function', () => {
+      // act
+      // assert:
+      expect(() => {
+        sut.toUpperCase('');
+      }).toThrow('Invalid argument!');
+    })
+
+
+    it('should throw error on invalid argument - try catch block', () => {
+      // this test method is a false positive 
+      try {
+        // act
+        sut.toUpperCase('');
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty('message', 'Invalid argument!');
+
+      }
+    })
   })
 
 
