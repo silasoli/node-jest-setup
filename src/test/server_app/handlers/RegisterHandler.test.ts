@@ -1,22 +1,21 @@
-import { register } from "module";
 import { Authorizer } from "../../../app/server_app/auth/Authorizer";
 import { RegisterHandler } from "../../../app/server_app/handlers/RegisterHandler"
 import { IncomingMessage, ServerResponse } from "http";
-import { getRequestBody } from "../../../app/server_app/utils/Utils";
-import { Account } from "../../../app/server_app/model/AuthModel";
 import { HTTP_CODES, HTTP_METHODS } from "../../../app/server_app/model/ServerModel";
+import { Account } from "../../../app/server_app/model/AuthModel";
 
 const getRequestBodyMock = jest.fn();
 
-jest.mock('../../../app/server_app/utils/Utils', () => ({
+jest.mock('../../../app/server_app/utils/Utils', ()=>({
     getRequestBody: () => getRequestBodyMock()
 }))
 
-describe('RegisterHandler test suite', () => {
+describe('RegisterHandler test suite', ()=>{
+
     let sut: RegisterHandler;
 
     const request = {
-        method: undefined
+        method: ''
     }
 
     const responseMock = {
@@ -25,7 +24,7 @@ describe('RegisterHandler test suite', () => {
         write: jest.fn()
     }
 
-    const authoriozerMock = {
+    const authorizerMock = {
         registerUser: jest.fn()
     }
 
@@ -37,32 +36,60 @@ describe('RegisterHandler test suite', () => {
 
     const someId = '1234';
 
-    beforeEach(() => {
+    beforeEach(()=>{
         sut = new RegisterHandler(
             request as IncomingMessage,
             responseMock as any as ServerResponse,
-            authoriozerMock as any as Authorizer
-        );
-    })
+            authorizerMock as any as Authorizer
+        )
+    });
 
-    afterEach(() => {
+    afterEach(()=>{
         jest.clearAllMocks();
     })
 
-    it('should register valid accounts in requests', async () => {
+    it('should register valid accounts in requests', async ()=>{
         request.method = HTTP_METHODS.POST;
         getRequestBodyMock.mockResolvedValueOnce(someAccount);
-        authoriozerMock.registerUser.mockResolvedValueOnce(someId);
+        authorizerMock.registerUser.mockResolvedValueOnce(someId);
 
         await sut.handleRequest();
 
-        expect(responseMock.statusCode).toBe(201);
-        expect(responseMock.writeHead).toHaveBeenCalledWith(
+        expect(responseMock.statusCode).toBe(HTTP_CODES.CREATED);
+        expect(responseMock.writeHead).toBeCalledWith(
             HTTP_CODES.CREATED,
             { 'Content-Type': 'application/json' }
         )
-        expect(responseMock.write).toHaveBeenCalledWith(JSON.stringify({ userId: someId }));
+        expect(responseMock.write).toBeCalledWith(
+            JSON.stringify({
+                userId: someId
+            })
+        )
     })
 
+    it('should not register invalid accounts in requests', async () => {
+        request.method = HTTP_METHODS.POST;
+        getRequestBodyMock.mockResolvedValueOnce({});
 
+        await sut.handleRequest();
+
+        expect(responseMock.statusCode).toBe(HTTP_CODES.BAD_REQUEST);
+        expect(responseMock.writeHead).toBeCalledWith(
+            HTTP_CODES.BAD_REQUEST, { 'Content-Type': 'application/json' }
+        )
+        expect(responseMock.write).toBeCalledWith(
+            JSON.stringify(
+                'userName and password required'
+            )
+        )
+    });
+
+    it('should do nothing for not supported http methods', async () => {
+        request.method = HTTP_METHODS.GET;
+        await sut.handleRequest();
+
+        expect(responseMock.writeHead).not.toBeCalled();
+        expect(responseMock.write).not.toBeCalled();
+        expect(getRequestBodyMock).not.toBeCalled();
+    });
 })
