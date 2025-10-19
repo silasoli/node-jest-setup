@@ -15,6 +15,9 @@ const config: Config.InitialOptions = {
     testMatch: [
         `${baseTestDir}/**/*test.ts`,
     ],
+    setupFiles: [
+        '<rootDir>/src/test/server_app3/utils/config.ts'
+    ]
 }
 
 export default config;

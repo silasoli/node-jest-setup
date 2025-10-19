@@ -38,6 +38,7 @@ describe('Server app integration tests', () => {
         expect(resultBody).toEqual(expect.objectContaining({
             userId: expect.any(String)
         }))
+        console.log(`connectting to address ${process.env.HOST}`);
     })
 
     it('should register new user with awesome request', async () => {
@@ -75,13 +76,10 @@ describe('Server app integration tests', () => {
 
         const resultBody = await result.json();
 
-        console.log(resultBody)
-
         expect(result.status).toBe(201);
         expect(resultBody.reservationId).toBeDefined();
         createdReservationId = resultBody.reservationId;
     })
-
 
     it('should get reservation if authorized', async () => {
         const result = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
@@ -138,7 +136,7 @@ describe('Server app integration tests', () => {
         expect(getAllResultBody.length).toBe(4);
     })
 
-    
+
     it('should update reservation if authorized', async () => {
         const updateResult = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
             method: HTTP_METHODS.PUT,
@@ -152,7 +150,7 @@ describe('Server app integration tests', () => {
 
         expect(updateResult.status).toBe(HTTP_CODES.OK);
 
-         const getResult = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
+        const getResult = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
             method: HTTP_METHODS.GET,
             headers: {
                 authorization: token
@@ -163,7 +161,7 @@ describe('Server app integration tests', () => {
         expect(getRequestBody.startDate).toBe('someOtherStartDate');
     })
 
-     it('should delete reservation if authorized', async () => {
+    it('should delete reservation if authorized', async () => {
         const deleteResult = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
             method: HTTP_METHODS.DELETE,
             body: JSON.stringify({
@@ -176,7 +174,7 @@ describe('Server app integration tests', () => {
 
         expect(deleteResult.status).toBe(HTTP_CODES.OK);
 
-         const getResult = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
+        const getResult = await fetch(`http://localhost:8080/reservation/${createdReservationId}`, {
             method: HTTP_METHODS.GET,
             headers: {
                 authorization: token
