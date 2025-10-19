@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:watch": "jest --watch",
+    "itest": "jest --config itest.config.ts",
     "test": "jest",
     "start": "ts-node src/app/server_app/Launcher.ts"
   },
