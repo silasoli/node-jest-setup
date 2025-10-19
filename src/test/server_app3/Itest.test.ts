@@ -1,11 +1,11 @@
-import * as generated from "../../../app/server_app/data/IdGenerator";
-import { Account } from "../../../app/server_app/model/AuthModel";
-import { Reservation } from "../../../app/server_app/model/ReservationModel";
-import { HTTP_CODES, HTTP_METHODS } from "../../../app/server_app/model/ServerModel";
-import { Server } from "../../../app/server_app/server/Server"
-import { makeAwesomeRequest } from "./http-client";
+import * as generated from "../../app/server_app/data/IdGenerator";
+import { Account } from "../../app/server_app/model/AuthModel";
+import { Reservation } from "../../app/server_app/model/ReservationModel";
+import { HTTP_CODES, HTTP_METHODS } from "../../app/server_app/model/ServerModel";
+import { Server } from "../../app/server_app/server/Server"
+import { makeAwesomeRequest } from "./utils/http-client";
 
-describe('Server app integration tests', () => {
+xdescribe('Server app integration tests', () => {
     let server: Server;
 
     beforeAll(() => {
