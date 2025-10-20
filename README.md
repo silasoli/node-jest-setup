@@ -1,4 +1,4 @@
-# Unit Testing for TypeScript & Node.js Developers with Jest
+# Curso Testes unitários para desenvolvedores TypeScript e Node.js com Jest
 
 ## Descrição
 
