@@ -1,32 +1,32 @@
-# Curso Testes unitários para desenvolvedores TypeScript e Node.js com Jest
+# Course: Unit Testing for TypeScript and Node.js Developers with Jest
 
-## Descrição
+## Description
 
-Curso voltado ao aprendizado prático e teórico de testes automatizados com Jest e TypeScript. O conteúdo abrange desde os fundamentos até técnicas avançadas de testes unitários e de integração, incluindo práticas de TDD (Test Driven Development) e automação de pipelines com Docker e GitHub Actions.
-
----
-
-## Conteúdo abordado
-
-- Fundamentos de testes unitários com Jest e TypeScript  
-  Estrutura básica de testes, uso de matchers, assertions e configuração do ambiente.
-
-- Técnicas intermediárias e avançadas com Jest  
-  Uso de hooks, snapshots, custom matchers, spies e mocks.  
-  Criação de test doubles e isolamento de dependências externas.
-
-- Testes com banco de dados e Docker  
-  Execução de testes integrados em containers, simulando cenários reais de persistência de dados.
-
-- Integração contínua (CI/CD)  
-  Configuração de pipelines com GitHub Actions e execução de testes automatizados em ambientes de integração.
-
-- Testes com React e TypeScript  
-  Testes unitários de componentes React utilizando Jest e React Testing Library, com foco em comportamento e renderização.
+A course focused on both the practical and theoretical aspects of automated testing with Jest and TypeScript. The content covers everything from foundational concepts to advanced techniques for unit and integration testing, including Test-Driven Development (TDD) practices and CI/CD automation using Docker and GitHub Actions.
 
 ---
 
-## Tecnologias e ferramentas
+## Topics Covered
+
+- **Fundamentals of Unit Testing with Jest and TypeScript**  
+  Basic test structure, use of matchers, assertions, and environment setup.
+
+- **Intermediate and Advanced Jest Techniques**  
+  Working with hooks, snapshots, custom matchers, spies, and mocks.  
+  Creating test doubles and isolating external dependencies.
+
+- **Database and Docker Testing**  
+  Running integrated tests in containers to simulate real data persistence scenarios.
+
+- **Continuous Integration (CI/CD)**  
+  Setting up pipelines with GitHub Actions and automating test execution in integration environments.
+
+- **Testing with React and TypeScript**  
+  Unit testing React components using Jest and React Testing Library, focusing on behavior and rendering validation.
+
+---
+
+## Technologies and Tools
 
 - TypeScript  
 - Node.js  
@@ -37,9 +37,8 @@ Curso voltado ao aprendizado prático e teórico de testes automatizados com Jes
 
 ---
 
-## Considerações finais
+## Final Remarks
 
-Realizei este curso com o objetivo de aprofundar meu conhecimento e aprimorar minha visão sobre o ecossistema de testes. Embora já possuísse experiência prévia com testes automatizados tanto unitários quanto de integração o conteúdo foi importante para consolidar boas práticas e explorar aspectos mais avançados.
+I took this course to deepen my understanding and broaden my perspective on the testing ecosystem. Although I already had experience with automated testing—both unit and integration tests—the course helped consolidate best practices and explore more advanced topics.
 
-Os principais aprendizados envolveram o uso de **GitHub Actions** integrado a **Docker** para execução de pipelines de teste com banco de dados, além do contato prático com **React Testing Library**. Também pude aprimorar minha compreensão sobre **padrões de organização**, **otimização de testes** e **estruturação de cenários complexos**, reforçando uma abordagem mais profissional e escalável para testes automatizados.
-
+The key takeaways included using **GitHub Actions** integrated with **Docker** to run test pipelines with a real database, as well as hands-on experience with **React Testing Library**. I also improved my understanding of **testing patterns**, **organization**, and **optimization**, reinforcing a more professional and scalable approach to automated testing.
