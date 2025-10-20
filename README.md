@@ -39,6 +39,6 @@ A course focused on both the practical and theoretical aspects of automated test
 
 ## Final Remarks
 
-I took this course to deepen my understanding and broaden my perspective on the testing ecosystem. Although I already had experience with automated testing—both unit and integration tests—the course helped consolidate best practices and explore more advanced topics.
+I took this course to deepen my understanding and broaden my perspective on the testing ecosystem. Although I already had experience with automated testingboth unit and integration teststhe course helped consolidate best practices and explore more advanced topics.
 
 The key takeaways included using **GitHub Actions** integrated with **Docker** to run test pipelines with a real database, as well as hands-on experience with **React Testing Library**. I also improved my understanding of **testing patterns**, **organization**, and **optimization**, reinforcing a more professional and scalable approach to automated testing.
